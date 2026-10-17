@@ -1,0 +1,1155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Career Compass | Career Guidance</title>
+
+<style>
+:root {
+    --primary: #6254e8;
+    --primary-dark: #4c3ed0;
+    --bg: #f6f7fc;
+    --card: #ffffff;
+    --text: #20243a;
+    --muted: #747b91;
+    --border: #e8eaf3;
+    --green: #159b73;
+    --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+
+.container {
+    max-width: 1200px;
+    width: 92%;
+    margin: auto;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.brand {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nav-links a:hover { color: var(--primary); }
+
+.hero {
+    margin-top: 32px;
+    padding: 42px;
+    border-radius: 26px;
+    background: linear-gradient(125deg, #292454, #6254e8);
+    color: white;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 25px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 800;
+    opacity: .8;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.15;
+    margin: 14px 0;
+}
+
+.hero p { color: #e1dfff; max-width: 560px; }
+
+.hero-visual {
+    text-align: center;
+    font-size: 100px;
+}
+
+.hero-visual p {
+    font-size: 14px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 10px;
+    border: 0;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.btn:hover { background: var(--primary-dark); }
+
+.btn-light {
+    background: white;
+    color: var(--primary);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+section { margin: 42px 0; scroll-margin-top: 90px; }
+
+.section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-head h2 { margin: 0; font-size: 25px; }
+.section-head p { color: var(--muted); margin: 4px 0 0; }
+
+.muted { color: var(--muted); }
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.stat, .card, .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 27px;
+    margin: 5px 0;
+}
+
+.stat span { font-size: 13px; color: var(--muted); }
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: #efedff;
+    font-size: 21px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.card {
+    transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px #27244d0d;
+}
+
+.card-icon { font-size: 30px; }
+.card h3 { margin: 10px 0 5px; font-size: 19px; }
+.card p { color: var(--muted); font-size: 14px; }
+
+.tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #efedff;
+    color: var(--primary);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    margin: 4px 3px 4px 0;
+}
+
+.tag.green { background: #e5f8f0; color: #087c58; }
+.tag.orange { background: #fff1df; color: #9c5d08; }
+
+.card ul { padding-left: 19px; font-size: 14px; }
+.card li { margin: 5px 0; }
+
+.card .btn { margin-top: 10px; }
+
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.toolbar input, .toolbar select, .goal-input {
+    padding: 11px 13px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    color: var(--text);
+}
+
+.toolbar input { flex: 1; min-width: 180px; }
+
+.roadmap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.roadmap-step {
+    display: flex;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.roadmap-step:last-child { border-bottom: 0; }
+
+.step-number {
+    flex-shrink: 0;
+    width: 37px;
+    height: 37px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #efedff;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.roadmap-step h4 { margin: 0 0 4px; }
+.roadmap-step p { margin: 0; font-size: 13px; color: var(--muted); }
+
+.check-row {
+    display: flex;
+    gap: 12px;
+    align-items: start;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.check-row input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    margin-top: 4px;
+}
+
+.check-row.done span {
+    color: var(--muted);
+    text-decoration: line-through;
+}
+
+.progress-track {
+    height: 9px;
+    background: #eeeff6;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #9b8fff);
+    transition: width .3s;
+}
+
+.project-list { padding-left: 20px; }
+.project-list li { margin: 9px 0; }
+
+.callout {
+    padding: 24px;
+    border-radius: var(--radius);
+    background: #efedff;
+    border: 1px solid #dfdbff;
+}
+
+.callout h3 { margin-top: 0; }
+.callout p { color: #55516f; }
+
+footer {
+    padding: 28px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 45px;
+}
+
+.empty { color: var(--muted); padding: 20px 0; }
+
+@media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; padding: 28px; }
+    .hero-visual { display: none; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .roadmap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+    .nav { padding: 14px 0; align-items: start; flex-direction: column; }
+    .nav-links { gap: 13px; }
+    .grid, .stats { grid-template-columns: 1fr; }
+    .section-head { align-items: start; flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav">
+        <a class="brand" href="#">✦ Career Compass</a>
+        <nav class="nav-links">
+            <a href="#careers">Career Paths</a>
+            <a href="#roadmaps">Roadmaps</a>
+            <a href="#projects">Projects</a>
+            <a href="#tracker">My Progress</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- HERO -->
+    <div class="hero">
+        <div>
+            <span class="eyebrow">Your future starts here</span>
+            <h1>Build skills.<br>Find your direction.</h1>
+            <p>
+                A practical career guide for Computer Engineering students.
+                Discover career options, learn the right skills, build projects,
+                and take one step towards your future every day.
+            </p>
+            <a class="btn btn-light" href="#careers">Explore Careers →</a>
+            <a class="btn" href="#tracker">My Learning Plan</a>
+        </div>
+        <div class="hero-visual">
+            🚀
+            <p>Learn today. Grow tomorrow.</p>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section>
+        <div class="section-head">
+            <div>
+                <h2>Your career journey</h2>
+                <p>Understand the opportunities available after Computer Engineering.</p>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-icon">🧭</div>
+                <strong>6+</strong>
+                <span>Career paths to explore</span>
+            </div>
+            <div class="stat">
+                <div class="stat-icon">🛠️</div>
+                <strong>4</strong>
+                <span>Stages in your learning roadmap</span>
+            </div>
+            <div class="stat">
+                <div class="stat-icon">🎯</div>
+                <strong id="overviewProgress">0%</strong>
+                <span>Your personal checklist progress</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREERS -->
+    <section id="careers">
+        <div class="section-head">
+            <div>
+                <h2>Explore career paths</h2>
+                <p>Choose a field that matches your interests and strengths.</p>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <input id="careerSearch" type="search"
+                   placeholder="Search careers or skills..."
+                   aria-label="Search careers">
+            <select id="careerFilter" aria-label="Filter careers">
+                <option value="all">All career paths</option>
+                <option value="software">Software & Web</option>
+                <option value="data">Data & AI</option>
+                <option value="infrastructure">Infrastructure</option>
+                <option value="security">Security</option>
+                <option value="hardware">Hardware</option>
+            </select>
+        </div>
+
+        <div class="grid" id="careerGrid">
+
+            <article class="card career-card" data-category="software"
+                     data-search="python backend developer flask django fastapi api sql">
+                <div class="card-icon">💻</div>
+                <span class="tag">Software</span>
+                <h3>Backend Developer</h3>
+                <p>Build the server-side logic, APIs, authentication systems and databases behind applications.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Python or Java</li>
+                    <li>Flask, Django or Spring Boot</li>
+                    <li>SQL, REST APIs and Git</li>
+                </ul>
+                <span class="tag green">Beginner friendly</span>
+                <button class="btn learn-btn" data-career="Backend Developer">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="software"
+                     data-search="frontend developer html css javascript react ui web">
+                <div class="card-icon">🎨</div>
+                <span class="tag">Software</span>
+                <h3>Frontend Developer</h3>
+                <p>Create the interfaces and interactive experiences users see in websites and web applications.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>HTML and CSS</li>
+                    <li>JavaScript and React</li>
+                    <li>Responsive design and Git</li>
+                </ul>
+                <span class="tag green">Beginner friendly</span>
+                <button class="btn learn-btn" data-career="Frontend Developer">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="data"
+                     data-search="data analyst sql python excel power bi visualization">
+                <div class="card-icon">📊</div>
+                <span class="tag">Data</span>
+                <h3>Data Analyst</h3>
+                <p>Turn raw data into useful insights through analysis, visualizations and reports.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Excel and SQL</li>
+                    <li>Python and Pandas</li>
+                    <li>Power BI or Tableau</li>
+                </ul>
+                <button class="btn learn-btn" data-career="Data Analyst">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="data"
+                     data-search="artificial intelligence machine learning ai ml python statistics">
+                <div class="card-icon">🤖</div>
+                <span class="tag">AI & ML</span>
+                <h3>AI / ML Engineer</h3>
+                <p>Develop systems that learn from data and help solve complex problems.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Python and mathematics</li>
+                    <li>Statistics and Pandas</li>
+                    <li>Machine learning fundamentals</li>
+                </ul>
+                <span class="tag orange">Requires deeper study</span>
+                <button class="btn learn-btn" data-career="AI / ML Engineer">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="infrastructure"
+                     data-search="devops cloud engineer linux docker aws ci cd">
+                <div class="card-icon">☁️</div>
+                <span class="tag">Infrastructure</span>
+                <h3>Cloud / DevOps Engineer</h3>
+                <p>Automate software delivery and manage deployment infrastructure and cloud services.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Linux and networking</li>
+                    <li>Docker and CI/CD</li>
+                    <li>AWS, Azure or GCP</li>
+                </ul>
+                <span class="tag orange">Build fundamentals first</span>
+                <button class="btn learn-btn" data-career="Cloud / DevOps Engineer">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="security"
+                     data-search="cybersecurity security ethical hacking networking linux">
+                <div class="card-icon">🔐</div>
+                <span class="tag">Security</span>
+                <h3>Cybersecurity Analyst</h3>
+                <p>Help protect computer systems, networks and information against security threats.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Networking and Linux</li>
+                    <li>Security fundamentals</li>
+                    <li>Logs, monitoring and incident response</li>
+                </ul>
+                <button class="btn learn-btn" data-career="Cybersecurity Analyst">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="hardware"
+                     data-search="embedded engineer iot electronics microcontroller c cpp">
+                <div class="card-icon">🔌</div>
+                <span class="tag">Hardware</span>
+                <h3>Embedded / IoT Engineer</h3>
+                <p>Combine programming and electronics to build connected and intelligent devices.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>C and C++</li>
+                    <li>Microcontrollers and electronics</li>
+                    <li>Sensors, communication and IoT</li>
+                </ul>
+                <button class="btn learn-btn" data-career="Embedded / IoT Engineer">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="software"
+                     data-search="mobile app developer android kotlin flutter dart">
+                <div class="card-icon">📱</div>
+                <span class="tag">Software</span>
+                <h3>Mobile App Developer</h3>
+                <p>Build Android and cross-platform applications for mobile devices.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Kotlin or Dart</li>
+                    <li>Android or Flutter</li>
+                    <li>APIs and data storage</li>
+                </ul>
+                <button class="btn learn-btn" data-career="Mobile App Developer">View Roadmap</button>
+            </article>
+
+            <article class="card career-card" data-category="software"
+                     data-search="software tester quality assurance qa automation selenium pytest">
+                <div class="card-icon">🧪</div>
+                <span class="tag">Software</span>
+                <h3>Software Testing / QA</h3>
+                <p>Verify that applications work correctly and help prevent defects before release.</p>
+                <strong>Skills to learn</strong>
+                <ul>
+                    <li>Testing fundamentals</li>
+                    <li>Test cases and bug reporting</li>
+                    <li>Python, pytest or Selenium</li>
+                </ul>
+                <button class="btn learn-btn" data-career="Software Testing / QA">View Roadmap</button>
+            </article>
+        </div>
+
+        <p id="noCareers" class="empty" hidden>No careers match your search. Try another keyword.</p>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmaps">
+        <div class="section-head">
+            <div>
+                <h2>Your learning roadmap</h2>
+                <p>Follow a practical sequence instead of learning everything at once.</p>
+            </div>
+        </div>
+
+        <div class="roadmap">
+            <div class="panel">
+                <h3>🗺️ Four stages of career preparation</h3>
+
+                <div class="roadmap-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4>Build fundamentals</h4>
+                        <p>Learn one programming language, problem-solving, OOP, data structures and SQL basics.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4>Choose a specialization</h4>
+                        <p>Select one main field based on your interests. Learn its tools and core concepts.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4>Build practical projects</h4>
+                        <p>Create useful applications, use GitHub, write tests and document your work.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4>Prepare for opportunities</h4>
+                        <p>Build a resume, practice interview questions, improve communication and apply for internships or jobs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>📚 Recommended learning resources</h3>
+                <p class="muted">Use these established resources to study at your own pace.</p>
+
+                <div class="roadmap-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4>Programming and computer science</h4>
+                        <p><a href="https://www.learnpython.org/" target="_blank" rel="noopener">Learn Python</a> ·
+                        <a href="https://cs50.harvard.edu/x/" target="_blank" rel="noopener">CS50</a></p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4>Web development</h4>
+                        <p><a href="https://developer.mozilla.org/" target="_blank" rel="noopener">MDN Web Docs</a> ·
+                        <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener">Flask Docs</a></p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4>Version control</h4>
+                        <p><a href="https://skills.github.com/" target="_blank" rel="noopener">GitHub Skills</a></p>
+                    </div>
+                </div>
+
+                <div class="roadmap-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4>Practice coding</h4>
+                        <p><a href="https://leetcode.com/" target="_blank" rel="noopener">LeetCode</a> ·
+                        <a href="https://www.hackerrank.com/" target="_blank" rel="noopener">HackerRank</a></p>
+                    </div>
+                </div>
+
+                <p class="muted" style="font-size:12px">
+                    These are external learning resources, not endorsements or guaranteed placement services.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECT IDEAS -->
+    <section id="projects">
+        <div class="section-head">
+            <div>
+                <h2>Build projects that demonstrate your skills</h2>
+                <p>Practical work helps turn theoretical knowledge into experience.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3>Beginner: Task Manager</h3>
+                <p>Build an application that lets users create, update, complete and delete tasks.</p>
+                <span class="tag">Python</span>
+                <span class="tag">CRUD</span>
+                <span class="tag">SQL</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <h3>Intermediate: Inventory API</h3>
+                <p>Create a REST API with authentication, products, categories, stock tracking and tests.</p>
+                <span class="tag">Flask</span>
+                <span class="tag">REST API</span>
+                <span class="tag">Database</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Personal: Habit Tracker</h3>
+                <p>Build a dashboard with daily habits, goals, completion history and progress summaries.</p>
+                <span class="tag">Web App</span>
+                <span class="tag">Authentication</span>
+                <span class="tag">Charts</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📈</div>
+                <h3>Data: Student Performance</h3>
+                <p>Analyze a sample dataset, calculate statistics and visualize performance trends.</p>
+                <span class="tag">Python</span>
+                <span class="tag">Pandas</span>
+                <span class="tag">Visualization</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🐳</div>
+                <h3>DevOps: Deploy an API</h3>
+                <p>Containerize a small web application and automate tests with a CI pipeline.</p>
+                <span class="tag">Docker</span>
+                <span class="tag">GitHub Actions</span>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔌</div>
+                <h3>IoT: Smart Environment Monitor</h3>
+                <p>Collect temperature or humidity readings using a microcontroller and display them.</p>
+                <span class="tag">Sensors</span>
+                <span class="tag">Microcontroller</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERSONAL TRACKER -->
+    <section id="tracker">
+        <div class="section-head">
+            <div>
+                <h2>My career preparation checklist</h2>
+                <p>Track small actions that move you towards your career goal.</p>
+            </div>
+        </div>
+
+        <div class="roadmap">
+            <div class="panel">
+                <h3>My weekly progress</h3>
+                <p class="muted">Check off each activity as you complete it.</p>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <strong id="progressLabel">0% completed</strong>
+                <span class="muted" id="taskCount" style="float:right;font-size:13px">0 of 8 tasks</span>
+
+                <div id="checklist">
+                    <label class="check-row"><input type="checkbox" data-task="0"><span>Study programming for at least 30 minutes.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="1"><span>Practice one coding problem.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="2"><span>Learn one new concept in my chosen field.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="3"><span>Work on my personal project.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="4"><span>Review or write project documentation.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="5"><span>Read about one career or job role.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="6"><span>Practice interview or communication skills.</span></label>
+                    <label class="check-row"><input type="checkbox" data-task="7"><span>Review my progress and plan next week.</span></label>
+                </div>
+
+                <button class="btn btn-outline" id="resetChecklist" style="margin-top:16px">Reset checklist</button>
+                <p class="muted" style="font-size:12px">
+                    Progress is saved in this browser on this device.
+                </p>
+            </div>
+
+            <div class="panel">
+                <h3>🎯 Set your next career goal</h3>
+                <p class="muted">Write one clear, achievable goal for your learning journey.</p>
+
+                <form id="goalForm">
+                    <label for="goalInput"><strong>My next goal</strong></label>
+                    <input class="goal-input" id="goalInput" type="text"
+                           maxlength="180" placeholder="e.g. Build my first REST API"
+                           style="width:100%;margin-top:10px" required>
+
+                    <label for="goalDate" style="display:block;margin-top:15px">
+                        <strong>Target date</strong>
+                    </label>
+                    <input class="goal-input" id="goalDate" type="date"
+                           style="width:100%;margin-top:10px">
+
+                    <button class="btn" type="submit" style="margin-top:15px">
+                        Save my goal
+                    </button>
+                </form>
+
+                <div class="callout" style="margin-top:22px">
+                    <h3>💡 Remember</h3>
+                    <p>
+                        You do not need to master every technology.
+                        Choose one direction, practice consistently,
+                        build real projects, and adjust your plan as you learn.
+                    </p>
+                </div>
+
+                <div id="savedGoal" style="margin-top:18px" aria-live="polite"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER DETAILS MODAL -->
+    <div id="careerModal" role="dialog" aria-modal="true"
+         aria-labelledby="modalTitle" hidden
+         style="position:fixed;inset:0;background:#16132b99;z-index:50;
+         padding:20px;overflow:auto;align-items:center;justify-content:center">
+
+        <div class="panel" style="max-width:620px;width:100%;margin:auto">
+            <div style="display:flex;justify-content:space-between;gap:15px">
+                <h2 id="modalTitle" style="margin-top:0">Career roadmap</h2>
+                <button id="closeModal" class="btn btn-outline"
+                        aria-label="Close career details">✕</button>
+            </div>
+            <p class="muted" id="modalDescription"></p>
+            <h3>Suggested learning sequence</h3>
+            <ol id="modalSteps"></ol>
+            <p class="muted" style="font-size:13px">
+                Suggested learning order only. Adjust it to your current skills and goals.
+            </p>
+            <button id="useCareer" class="btn">Use this as my goal</button>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="container">
+        Career Compass · Career awareness, consistent habits, meaningful goals.
+        <br>Explore your options, verify requirements, and choose your own path.
+    </div>
+</footer>
+
+<script>
+/* CAREER SEARCH AND FILTER */
+
+const searchInput = document.getElementById("careerSearch");
+const filterSelect = document.getElementById("careerFilter");
+const careerCards = [...document.querySelectorAll(".career-card")];
+
+function filterCareers() {
+    const query = searchInput.value.trim().toLowerCase();
+    const category = filterSelect.value;
+    let visible = 0;
+
+    careerCards.forEach(card => {
+        const matchesText = card.dataset.search.includes(query) ||
+                            card.innerText.toLowerCase().includes(query);
+        const matchesCategory = category === "all" ||
+                                card.dataset.category === category;
+        const show = matchesText && matchesCategory;
+
+        card.hidden = !show;
+        if (show) visible++;
+    });
+
+    document.getElementById("noCareers").hidden = visible !== 0;
+}
+
+searchInput.addEventListener("input", filterCareers);
+filterSelect.addEventListener("change", filterCareers);
+
+
+/* CAREER ROADMAP MODAL */
+
+const careerInfo = {
+    "Backend Developer": {
+        description: "Learn how server-side applications, APIs and databases work together.",
+        steps: [
+            "Learn Python fundamentals, OOP and data structures.",
+            "Learn SQL, database design and Git.",
+            "Build APIs with Flask, Django or FastAPI.",
+            "Learn authentication, validation and automated testing.",
+            "Deploy a project and document it on GitHub."
+        ]
+    },
+    "Frontend Developer": {
+        description: "Learn to build responsive and accessible user interfaces.",
+        steps: [
+            "Learn semantic HTML and CSS.",
+            "Practice responsive layouts and accessibility.",
+            "Learn JavaScript, DOM manipulation and asynchronous code.",
+            "Build projects and learn a framework such as React.",
+            "Deploy your work and maintain a portfolio."
+        ]
+    },
+    "Data Analyst": {
+        description: "Learn to extract insights from data and communicate your findings.",
+        steps: [
+            "Learn spreadsheets and basic statistics.",
+            "Learn SQL queries and joins.",
+            "Learn Python and Pandas.",
+            "Build charts and dashboards.",
+            "Publish projects with explanations of your findings."
+        ]
+    },
+    "AI / ML Engineer": {
+        description: "Build a foundation in mathematics, data and machine learning.",
+        steps: [
+            "Learn Python and programming fundamentals.",
+            "Study linear algebra, probability and statistics.",
+            "Learn NumPy, Pandas and data preparation.",
+            "Study machine learning concepts and evaluation.",
+            "Build and document small end-to-end projects."
+        ]
+    },
+    "Cloud / DevOps Engineer": {
+        description: "Learn how applications are deployed, monitored and maintained.",
+        steps: [
+            "Learn Linux commands and networking fundamentals.",
+            "Learn Git and shell scripting.",
+            "Learn Docker and container fundamentals.",
+            "Build a CI/CD pipeline and learn cloud basics.",
+            "Practice monitoring, security and deployment."
+        ]
+    },
+    "Cybersecurity Analyst": {
+        description: "Develop skills for identifying, investigating and responding to threats.",
+        steps: [
+            "Learn networking, operating systems and Linux.",
+            "Study security principles and common vulnerabilities.",
+            "Practice log analysis and security monitoring.",
+            "Use legal training labs and defensive security tools.",
+            "Document your labs and incident investigations."
+        ]
+    },
+    "Embedded / IoT Engineer": {
+        description: "Combine programming and electronics to develop connected devices.",
+        steps: [
+            "Learn C or C++ and basic electronics.",
+            "Study microcontrollers and digital interfaces.",
+            "Practice sensors and communication protocols.",
+            "Build a small device with meaningful functionality.",
+            "Document hardware, code and testing results."
+        ]
+    },
+    "Mobile App Developer": {
+        description: "Learn to develop applications for mobile devices.",
+        steps: [
+            "Choose Kotlin for native Android or Dart for Flutter.",
+            "Learn layouts, navigation and application state.",
+            "Practice APIs and local data storage.",
+            "Build and test a complete application.",
+            "Learn accessibility, performance and release basics."
+        ]
+    },
+    "Software Testing / QA": {
+        description: "Learn to find defects and verify software quality systematically.",
+        steps: [
+            "Learn testing types and test case design.",
+            "Practice reporting and reproducing defects.",
+            "Learn API testing and SQL basics.",
+            "Learn pytest or another testing framework.",
+            "Automate tests for a real project."
+        ]
+    }
+};
+
+const modal = document.getElementById("careerModal");
+let selectedCareer = "";
+
+function openCareer(name) {
+    const info = careerInfo[name];
+    if (!info) return;
+
+    selectedCareer = name;
+    document.getElementById("modalTitle").textContent = name;
+    document.getElementById("modalDescription").textContent = info.description;
+
+    const list = document.getElementById("modalSteps");
+    list.replaceChildren();
+
+    info.steps.forEach(step => {
+        const li = document.createElement("li");
+        li.textContent = step;
+        li.style.marginBottom = "10px";
+        list.appendChild(li);
+    });
+
+    modal.hidden = false;
+    modal.style.display = "flex";
+    document.getElementById("closeModal").focus();
+}
+
+function closeCareer() {
+    modal.hidden = true;
+    modal.style.display = "none";
+}
+
+document.querySelectorAll(".learn-btn").forEach(button => {
+    button.addEventListener("click", () => openCareer(button.dataset.career));
+});
+
+document.getElementById("closeModal").addEventListener("click", closeCareer);
+
+modal.addEventListener("click", event => {
+    if (event.target === modal) closeCareer();
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !modal.hidden) closeCareer();
+});
+
+document.getElementById("useCareer").addEventListener("click", () => {
+    document.getElementById("goalInput").value =
+        "Learn the fundamentals of " + selectedCareer;
+    closeCareer();
+    document.getElementById("goalInput").focus();
+    document.getElementById("tracker").scrollIntoView({ behavior: "smooth" });
+});
+
+
+/* WEEKLY CHECKLIST */
+
+const checkboxes = [...document.querySelectorAll("[data-task]")];
+
+function loadChecklist() {
+    let saved = {};
+
+    try {
+        saved = JSON.parse(localStorage.getItem("careerCompassChecklist") || "{}");
+    } catch (error) {
+        saved = {};
+    }
+
+    checkboxes.forEach(box => {
+        box.checked = saved[box.dataset.task] === true;
+    });
+
+    updateProgress();
+}
+
+function updateProgress() {
+    const completed = checkboxes.filter(box => box.checked).length;
+    const percent = Math.round(completed / checkboxes.length * 100);
+
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("progressLabel").textContent = percent + "% completed";
+    document.getElementById("taskCount").textContent =
+        completed + " of " + checkboxes.length + " tasks";
+
+    document.getElementById("overviewProgress").textContent = percent + "%";
+
+    checkboxes.forEach(box => {
+        box.closest(".check-row").classList.toggle("done", box.checked);
+    });
+
+    try {
+        const state = {};
+        checkboxes.forEach(box => {
+            state[box.dataset.task] = box.checked;
+        });
+        localStorage.setItem("careerCompassChecklist", JSON.stringify(state));
+    } catch (error) {
+        // The checklist still works if browser storage is unavailable.
+    }
+}
+
+checkboxes.forEach(box => box.addEventListener("change", updateProgress));
+
+document.getElementById("resetChecklist").addEventListener("click", () => {
+    if (!confirm("Reset all checklist activities?")) return;
+    checkboxes.forEach(box => box.checked = false);
+    updateProgress();
+});
+
+
+/* PERSONAL GOAL */
+
+const goalForm = document.getElementById("goalForm");
+const goalInput = document.getElementById("goalInput");
+const goalDate = document.getElementById("goalDate");
+const savedGoal = document.getElementById("savedGoal");
+
+function renderGoal(goal) {
+    savedGoal.replaceChildren();
+
+    if (!goal || !goal.text) {
+        savedGoal.textContent = "No goal saved yet.";
+        savedGoal.className = "muted";
+        return;
+    }
+
+    const title = document.createElement("h4");
+    title.textContent = "🎯 Your current goal";
+    title.style.marginBottom = "5px";
+
+    const text = document.createElement("p");
+    text.textContent = goal.text;
+
+    const date = document.createElement("p");
+    date.className = "muted";
+    date.style.fontSize = "13px";
+    date.textContent = goal.date ? "Target date: " + goal.date : "No target date set";
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "btn btn-outline";
+    remove.textContent = "Remove goal";
+
+    remove.addEventListener("click", () => {
+        try {
+            localStorage.removeItem("careerCompassGoal");
+        } catch (error) {}
+        renderGoal(null);
+    });
+
+    savedGoal.append(title, text, date, remove);
+}
+
+goalForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const text = goalInput.value.trim();
+    const date = goalDate.value;
+
+    if (!text) return;
+
+    const goal = { text, date };
+
+    try {
+        localStorage.setItem("careerCompassGoal", JSON.stringify(goal));
+    } catch (error) {
+        // Show the goal in the current page even if storage is unavailable.
+    }
+
+    renderGoal(goal);
+});
+
+function loadGoal() {
+    try {
+        const goal = JSON.parse(localStorage.getItem("careerCompassGoal") || "null");
+        if (goal) {
+            goalInput.value = goal.text || "";
+            goalDate.value = goal.date || "";
+        }
+        renderGoal(goal);
+    } catch (error) {
+        renderGoal(null);
+    }
+}
+
+loadChecklist();
+loadGoal();
+</script>
+
+</body>
+</html>
